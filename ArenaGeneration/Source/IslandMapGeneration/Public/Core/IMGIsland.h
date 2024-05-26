@@ -21,9 +21,6 @@ public:
 	AIMGIsland();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	USphereComponent* VicinityCollision;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EIMGOverlapType CanBeOverlapped;
 
 	UFUNCTION(BlueprintNativeEvent)
@@ -31,15 +28,6 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UStaticMeshComponent* IslandBase;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	EIMGIslandType IslandType;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	EIMGIslandSize Size;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	USplineComponent* InnerBoundsSpline;

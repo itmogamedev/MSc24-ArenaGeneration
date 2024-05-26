@@ -53,9 +53,6 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TObjectPtr<UProceduralMeshComponent> FloorProceduralMesh;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<UDynamicMeshComponent> FloorDynamicMesh;
 
 	UPROPERTY(BlueprintReadOnly)

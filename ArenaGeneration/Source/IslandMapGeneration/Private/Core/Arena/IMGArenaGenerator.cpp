@@ -6,8 +6,6 @@
 #include "Core/IMGArenaIsland.h"
 #include "Core/Arena/IMGArenaGenerationHelper.h"
 #include "DataAssets/IMGEnemyMapArenaGenerationDB.h"
-#include "Kismet/GameplayStatics.h"
-
 
 AIMGArenaGenerator::AIMGArenaGenerator() { PrimaryActorTick.bCanEverTick = false; }
 

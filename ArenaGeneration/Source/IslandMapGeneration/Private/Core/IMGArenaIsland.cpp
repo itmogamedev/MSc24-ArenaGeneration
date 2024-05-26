@@ -25,9 +25,6 @@ AIMGArenaIsland::AIMGArenaIsland()
 	ArenaFloorBounds = CreateDefaultSubobject<UIMGSplineCollider>("SplineCollider");
 	ArenaFloorBounds->SetupAttachment(ArenaPointsScatterBounds);
 
-	FloorProceduralMesh = CreateDefaultSubobject<UProceduralMeshComponent>("FloorProceduralMesh");
-	FloorProceduralMesh->SetupAttachment(ArenaPointsScatterBounds);
-
 	FloorDynamicMesh = CreateDefaultSubobject<UDynamicMeshComponent>("FloorDynamicMesh");
 	FloorDynamicMesh->SetupAttachment(GetRootComponent());
 }
@@ -64,7 +61,6 @@ void AIMGArenaIsland::GenerateFloor(EnemiesCount EnemiesToSpawn,
 	// ArenaFloorGenerator.DebugTileTypes(GetWorld());
 	// ArenaFloorGenerator.DebugClusters(GetWorld());
 
-	FDynamicMesh3 A{true, true, true, false};
 	ArenaFloorGenerator.GetPerTileProcMeshBuildData(ExtrudeData);
 
 	for (FIMGCellData* Cell : ArenaFloorGenerator.Cells)

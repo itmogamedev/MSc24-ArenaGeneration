@@ -8,7 +8,6 @@
 #include "Voronoi/Voronoi.h"
 #include "DataAssets/IMGMesoPatternBuildRules.h"
 
-class UEnemy;
 class UIMGEnemyMapArenaGenerationDB;
 class AIMGArenaIsland;
 class USplineComponent;
@@ -42,7 +41,7 @@ public:
 	void Initialize(int32 NumOfInitialCells, UBoxComponent* BoundingBox, UIMGSplineCollider* ArenaBoundsCollider,
 	                UIMGMesoPatternBuildRules* Rules);
 
-	void SplitIntoMesoPatterns(TMap<TSubclassOf<UEnemy>, int32> EnemiesCount, USplineComponent* PathSpline);
+	void SplitIntoMesoPatterns(EnemiesCount EnemiesCount, USplineComponent* PathSpline);
 	void GetPerTileProcMeshBuildData(TArray<FIMGExtrudeData>& ExtrudeData);
 
 	void DebugTileTypes(const UWorld* World);
@@ -57,7 +56,7 @@ private:
 	TArray<FIMGCellData*> CellsToTraverse;
 	TArray<FIMGCellData*> CellsToJoinIntoCluster;
 
-	TMap<TSubclassOf<UEnemy>, int32> EnemiesCountToSpawn;
+	EnemiesCount EnemiesCountToSpawn;
 	TMap<EIMGArenaTileType, int32> TilesMaxNum;
 	TMap<EIMGArenaTileType, int32> TilesSpawned;
 

@@ -8,6 +8,26 @@
 			"Name": "ArenaGeneration",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "IslandMapGeneration",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"CoreUObject",
+				"GeometryCollectionEngine"
+			]
+		},
+		{
+			"name": "WaveFunctionCollapse",
+			"type": "Runtime",
+			"loadingPhase": "Default"
+		},
+		{
+			"name": "SSHelper",
+			"type": "Runtime",
+			"loadingPhase": "Default"
 		}
 	],
 	"Plugins": [

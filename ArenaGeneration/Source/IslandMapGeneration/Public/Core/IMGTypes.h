@@ -8,11 +8,16 @@
 #include "Voronoi/Voronoi.h"
 #include "IMGTypes.generated.h"
 
+struct FIMGEnemyGenerationData;
+class AExampleEnemy;
 class UIMGGlobalLocationRule;
 class UStaticMesh;
 class AIMGIsland;
 class AIMGDebugActor;
 class AIMGIslandProp;
+
+typedef TMap<TSubclassOf<AExampleEnemy>, int32> EnemiesCount;
+typedef TMap<TSubclassOf<AExampleEnemy>, FIMGEnemyGenerationData> EnemiesGenerationData;
 
 // Islands ENUMs
 UENUM(BlueprintType)

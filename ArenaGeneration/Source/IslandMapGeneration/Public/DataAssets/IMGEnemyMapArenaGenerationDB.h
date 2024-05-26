@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Core/IMGTypes.h"
 #include "Engine/DataAsset.h"
-#include "Interfaces/Enemy.h"
 #include "IMGEnemyMapArenaGenerationDB.generated.h"
 
 class AGHBaseEnemy;
@@ -22,5 +21,5 @@ public:
 	TMap<EIMGEnemyMovementType, FIMGTileTypeToMultiplier> MovementTypeToArenaTypeImpact;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TMap<TSubclassOf<UEnemy>, FIMGEnemyGenerationData> Data;
+	TMap<TSubclassOf<AExampleEnemy>, FIMGEnemyGenerationData> Data;
 };

@@ -7,10 +7,10 @@
 #include "GameFramework/Actor.h"
 #include "IMGArenaGenerator.generated.h"
 
-class UEnemy;
 class UIMGEnemyMapArenaGenerationDB;
 class AIMGArenaIsland;
 class AArena;
+class AExampleEnemy;
 
 USTRUCT(BlueprintType)
 struct ISLANDMAPGENERATION_API FIMGArenasPool
@@ -34,7 +34,7 @@ public:
 	bool RandomDependsOnEnemies = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TMap<TSubclassOf<UEnemy>, int32> EnemiesToSpawn;
+	TMap<TSubclassOf<AExampleEnemy>, int32> EnemiesToSpawn;
 	
 	AIMGArenaGenerator();
 

@@ -5,9 +5,7 @@
 
 DEFINE_LOG_CATEGORY_STATIC(LogIMGArenaGenerationHelper, All, All)
 
-EIMGArenaType FIMGArenaGenerationHelper::ChooseMacroPattern(TMap<TSubclassOf<UEnemy>, int32> EnemiesToSpawn,
-                                                            TMap<TSubclassOf<UEnemy>, FIMGEnemyGenerationData>
-                                                            Data)
+EIMGArenaType FIMGArenaGenerationHelper::ChooseMacroPattern(EnemiesCount EnemiesToSpawn, EnemiesGenerationData Data)
 {
 	float CorridorScore = 0.f;
 	float ArenaScore = 0.f;
@@ -32,8 +30,8 @@ EIMGArenaType FIMGArenaGenerationHelper::ChooseMacroPattern(TMap<TSubclassOf<UEn
 }
 
 void FIMGArenaGenerationHelper::GetArenaTilesMaxNum(TMap<EIMGArenaTileType, int32>& TilesMaxNum, int32 TotalTilesNum,
-                                                    const TMap<TSubclassOf<UEnemy>, int32>& EnemiesToSpawn,
-                                                    const TMap<TSubclassOf<UEnemy>, FIMGEnemyGenerationData>&
+                                                    const EnemiesCount& EnemiesToSpawn,
+                                                    const EnemiesGenerationData&
                                                     Data,
                                                     const TMap<EIMGEnemyMovementType, FIMGTileTypeToMultiplier>&
                                                     MovementTypeToArenaTypeImpact)
@@ -99,8 +97,8 @@ void FIMGArenaGenerationHelper::GetArenaTilesMaxNum(TMap<EIMGArenaTileType, int3
 }
 
 float FIMGArenaGenerationHelper::GetTotalEnemiesSetEfficiency(
-	const TMap<TSubclassOf<UEnemy>, int32>& EnemiesToSpawn,
-	const TMap<TSubclassOf<UEnemy>, FIMGEnemyGenerationData>& Data)
+	const EnemiesCount& EnemiesToSpawn,
+	const EnemiesGenerationData& Data)
 {
 	float TotalEfficiency = 0.f;
 

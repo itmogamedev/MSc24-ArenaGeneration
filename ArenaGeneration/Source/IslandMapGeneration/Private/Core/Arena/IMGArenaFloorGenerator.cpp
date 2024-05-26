@@ -93,7 +93,7 @@ void FIMGArenaFloorGenerator::Initialize(int32 NumOfInitialCells, UBoxComponent*
 	}
 }
 
-void FIMGArenaFloorGenerator::SplitIntoMesoPatterns(TMap<TSubclassOf<UEnemy>, int32> EnemiesCount,
+void FIMGArenaFloorGenerator::SplitIntoMesoPatterns(EnemiesCount EnemiesCount,
                                                     USplineComponent* PathSpline)
 {
 	CellsToTraverse = Cells;

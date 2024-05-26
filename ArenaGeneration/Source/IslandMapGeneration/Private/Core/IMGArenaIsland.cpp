@@ -32,7 +32,7 @@ AIMGArenaIsland::AIMGArenaIsland()
 	FloorDynamicMesh->SetupAttachment(GetRootComponent());
 }
 
-void AIMGArenaIsland::GenerateArenaGeometry(TMap<TSubclassOf<UEnemy>, int32> EnemiesToSpawn,
+void AIMGArenaIsland::GenerateArenaGeometry(EnemiesCount EnemiesToSpawn,
                                             UIMGEnemyMapArenaGenerationDB* EnemyMapArena)
 {
 	GenerateFloor(EnemiesToSpawn, EnemyMapArena);
@@ -50,7 +50,7 @@ void AIMGArenaIsland::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	Super::EndPlay(EndPlayReason);
 }
 
-void AIMGArenaIsland::GenerateFloor(TMap<TSubclassOf<UEnemy>, int32> EnemiesToSpawn,
+void AIMGArenaIsland::GenerateFloor(EnemiesCount EnemiesToSpawn,
                                     UIMGEnemyMapArenaGenerationDB* EnemyMapArena)
 {
 	ArenaFloorGenerator = FIMGArenaFloorGenerator(ScatterPointsNum,

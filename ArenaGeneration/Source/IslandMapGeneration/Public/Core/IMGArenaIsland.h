@@ -8,14 +8,13 @@
 #include "Arena/IMGArenaFloorGenerator.h"
 #include "IMGArenaIsland.generated.h"
 
-class UEnemy;
 class UIMGTileSets;
 class UDynamicMeshComponent;
-class AArena;
 class UIMGSplineCollider;
 class UBoxComponent;
 class UProceduralMesh;
 class FIMGArenaFloorGenerator;
+class AExampleEnemy;
 
 UCLASS()
 class ISLANDMAPGENERATION_API AIMGArenaIsland : public AIMGIsland
@@ -45,7 +44,7 @@ public:
 	TSubclassOf<AWFCActor> WFCActorClass;
 
 	UFUNCTION(BlueprintCallable, Category="Arena generation")
-	void GenerateArenaGeometry(TMap<TSubclassOf<UEnemy>, int32> EnemiesToSpawn,
+	void GenerateArenaGeometry(TMap<TSubclassOf<AExampleEnemy>, int32> EnemiesToSpawn,
 	                           UIMGEnemyMapArenaGenerationDB* EnemyMapArena);
 
 	TArray<FVector> SpawnPoints{};
@@ -71,6 +70,6 @@ private:
 	FIMGArenaFloorGenerator ArenaFloorGenerator;
 
 	UFUNCTION(BlueprintCallable, Category="Arena generation")
-	void GenerateFloor(TMap<TSubclassOf<UEnemy>, int32> EnemiesToSpawn,
+	void GenerateFloor(TMap<TSubclassOf<AExampleEnemy>, int32> EnemiesToSpawn,
 	                   UIMGEnemyMapArenaGenerationDB* EnemyMapArena);
 };

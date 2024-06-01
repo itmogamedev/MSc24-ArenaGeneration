@@ -10,9 +10,14 @@ EIMGArenaType FIMGArenaGenerationHelper::ChooseMacroPattern(EnemiesCount Enemies
 	float CorridorScore = 0.f;
 	float ArenaScore = 0.f;
 
-	for (const auto EnemiesCount : EnemiesToSpawn)
+	for (const auto [EnemyClass, Count] : EnemiesToSpawn)
 	{
-		const FIMGEnemyGenerationData* GenerationData = Data.Find(EnemiesCount.Key);
+		if(Count <= 0 )
+		{
+			continue;
+		}
+		
+		const FIMGEnemyGenerationData* GenerationData = Data.Find(EnemyClass);
 		if (!GenerationData)
 		{
 			UE_LOG(LogIMGArenaGenerationHelper, Error, TEXT("Generation data has no such enemy class!"));
@@ -21,10 +26,11 @@ EIMGArenaType FIMGArenaGenerationHelper::ChooseMacroPattern(EnemiesCount Enemies
 		const float PreferredWideness = GenerationData->PreferredArenaWideness;
 		if (FMath::IsNearlyEqual(PreferredWideness, .5f)) { continue; }
 
-		if (PreferredWideness < .5f) { CorridorScore += PreferredWideness * GenerationData->Efficiency; }
-		else { ArenaScore += PreferredWideness * GenerationData->Efficiency; }
+		if (PreferredWideness < .5f) { CorridorScore += Count * GenerationData->Efficiency; }
+		else { ArenaScore += Count * GenerationData->Efficiency; }
 	}
 
+	UE_LOG(LogIMGArenaGenerationHelper, Display, TEXT("Corridor score: %f, arena score: %f"), CorridorScore, ArenaScore)
 	if (CorridorScore > ArenaScore) { return EIMGArenaType::EAT_Corridor; }
 	return EIMGArenaType::EAT_Arena;
 }
@@ -46,11 +52,16 @@ void FIMGArenaGenerationHelper::GetArenaTilesMaxNum(TMap<EIMGArenaTileType, int3
 
 	TMap<EIMGArenaTileType, float> ValuableTypeToEfficiency;
 
-	for (const auto EnemiesCount : EnemiesToSpawn)
+	for (const auto [EnemyClass, Count] : EnemiesToSpawn)
 	{
+		if(Count <= 0 )
+		{
+			continue;
+		}
+		
 		for (const EIMGArenaTileType Type : ValuableTileTypes)
 		{
-			const FIMGEnemyGenerationData* GenerationData = Data.Find(EnemiesCount.Key);
+			const FIMGEnemyGenerationData* GenerationData = Data.Find(EnemyClass);
 			if (!GenerationData)
 			{
 				UE_LOG(LogIMGArenaGenerationHelper, Error, TEXT("Generation data has no such enemy class!"));
@@ -69,7 +80,7 @@ void FIMGArenaGenerationHelper::GetArenaTilesMaxNum(TMap<EIMGArenaTileType, int3
 			}
 
 			ValuableTypeToEfficiency.FindOrAdd(Type) +=
-				TotalMultiplier * GenerationData->Efficiency * EnemiesCount.Value;
+				TotalMultiplier * GenerationData->Efficiency * Count;
 		}
 	}
 
@@ -102,15 +113,20 @@ float FIMGArenaGenerationHelper::GetTotalEnemiesSetEfficiency(
 {
 	float TotalEfficiency = 0.f;
 
-	for (const auto EnemiesCount : EnemiesToSpawn)
+	for (const auto [EnemyClass, Count] : EnemiesToSpawn)
 	{
-		const FIMGEnemyGenerationData* GenerationData = Data.Find(EnemiesCount.Key);
+		if(Count <= 0 )
+		{
+			continue;
+		}
+		
+		const FIMGEnemyGenerationData* GenerationData = Data.Find(EnemyClass);
 		if (!GenerationData)
 		{
 			UE_LOG(LogIMGArenaGenerationHelper, Error, TEXT("Generation data has no such enemy class!"));
 		}
 
-		TotalEfficiency += GenerationData->Efficiency * EnemiesCount.Value;
+		TotalEfficiency += GenerationData->Efficiency * Count;
 	}
 
 	return TotalEfficiency;

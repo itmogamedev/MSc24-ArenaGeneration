@@ -26,7 +26,7 @@ AIMGArenaIsland::AIMGArenaIsland()
 	ArenaFloorBounds->SetupAttachment(ArenaPointsScatterBounds);
 
 	FloorDynamicMesh = CreateDefaultSubobject<UDynamicMeshComponent>("FloorDynamicMesh");
-	FloorDynamicMesh->SetupAttachment(GetRootComponent());
+	FloorDynamicMesh->SetupAttachment(ArenaPointsScatterBounds);
 }
 
 void AIMGArenaIsland::GenerateArenaGeometry(EnemiesCount EnemiesToSpawn,
@@ -58,7 +58,7 @@ void AIMGArenaIsland::GenerateFloor(EnemiesCount EnemiesToSpawn,
 	ArenaFloorGenerator.ParentArena = this;
 	ArenaFloorGenerator.EnemyMapArena = EnemyMapArena;
 	ArenaFloorGenerator.SplitIntoMesoPatterns(EnemiesToSpawn, InnerBoundsSpline);
-	// ArenaFloorGenerator.DebugTileTypes(GetWorld());
+	ArenaFloorGenerator.DebugTileTypes(GetWorld());
 	// ArenaFloorGenerator.DebugClusters(GetWorld());
 
 	ArenaFloorGenerator.GetPerTileProcMeshBuildData(ExtrudeData);
@@ -77,7 +77,7 @@ void AIMGArenaIsland::GenerateFloor(EnemiesCount EnemiesToSpawn,
 		}
 	}
 	// TODO: Figure out what is really needed =============================================
-	FloorDynamicMesh->SetRelativeLocation(-GetActorLocation());
+	// FloorDynamicMesh->SetRelativeLocation(-GetActorLocation());
 	FloorDynamicMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	FloorDynamicMesh->SetDeferredCollisionUpdatesEnabled(true);
 	FloorDynamicMesh->bEnableComplexCollision = true;
